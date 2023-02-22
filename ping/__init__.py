@@ -8,7 +8,7 @@ import azure.functions as func
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    """NA
+    """Gets the current availability state of the openai service.
     Args:
         req: The http request
     Returns:
