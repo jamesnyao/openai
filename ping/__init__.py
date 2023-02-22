@@ -1,4 +1,4 @@
-"""Entry point of the image function"""
+"""Entry point of the ping function"""
 
 import json
 import logging
@@ -7,7 +7,7 @@ from datetime import datetime
 import azure.functions as func
 
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+def main(_req: func.HttpRequest) -> func.HttpResponse:
     """Gets the current availability state of the openai service.
     Args:
         req: The http request
@@ -15,6 +15,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         A json formatted str of the response.
     """
 
-    logging.info('Python HTTP trigger function.image')
+    logging.info('Python HTTP trigger function.ping')
 
-    return func.HttpResponse(json.dumps({'time': f'{datetime.now()}'}), status_code=200)
+    return func.HttpResponse(json.dumps({'utc_time': f'{datetime.utcnow()}'}), status_code=200)

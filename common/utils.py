@@ -1,7 +1,7 @@
 """Util functions"""
 
 import json
-from typing import Any, List
+from typing import Any, Dict, List
 
 import azure.functions as func
 
@@ -33,11 +33,14 @@ def get_param(request: func.HttpRequest, key: str, default_value: Any = None) ->
     return value if value is not None else default_value
 
 
-def get_response(body: str, status_code=200) -> func.HttpResponse:
-    """Get an HTTP response object for Functions
+def get_json_response(body: Dict[str, Any], status_code=200) -> func.HttpResponse:
+    """Get an HTTP response object for functions
 
     Args:
         body (str): Response body string
         status_code (int, optional): Response status code. Defaults to 200.
+
+    Returns:
+        func.HttpResponse: _description_
     """
-    return func.HttpResponse(body, status_code=status_code, headers={'Content-Type': 'application/json'})
+    return func.HttpResponse(json.dumps(body), status_code=status_code, headers={'Content-Type': 'application/json'})
